@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title> {% block title %} {% endblock %}  | puddle</title>
+</head>
+<body>
+    <nav class="flex px-6 py-6 justify-between items-center border-b border-gray-200"> 
+        <a href="/" class="text-xl font-semibold"> puddle </a>
+        <div class="space-x-6">
+            <a href="/" class="text-lg font-semibold hover:text-gray-500"> New Item </a>
+            <a href="/" class="text-lg font-semibold hover:text-gray-500"> Browse </a>
+        </div>
+     </nav>
+    <div class="px-6 py-6">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body> 
+</html>
