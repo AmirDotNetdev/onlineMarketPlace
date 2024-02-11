@@ -8,7 +8,7 @@
         <div class="grid grid-cols-3 gap-3">
             {% for item in items %}
             <div>
-                <a href="#" >
+                <a href="{% url 'detail' item.id %}" >
                     <div>
                         <img src="{{ item.image.url }}"/ class="rounded-t-xl">
     
@@ -21,6 +21,7 @@
             </div>
             {% endfor %}
         </div>
+    </div>
         <h2 class="mb-12 text-2xl text-center"> categories </h2>
         <div class="grid grid-cols-3 gap-3">
             {% for category in categories %}
@@ -37,6 +38,6 @@
         </div>
     </div>
 
-    </div>
+    
 
 {% endblock %}
