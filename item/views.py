@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
 from django.contrib.auth.decorators import login_required
 from .forms import NewItemForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def detail(request, pk):
@@ -37,3 +38,9 @@ def new(request):
     }
 
     return render(request, 'item/form.html' , context)
+
+@login_required
+def delete(request, pk):
+    item = get_object_or_404(Item , pk=pk , created_by = request.user)
+    item.delete()
+    return redirect('index')
