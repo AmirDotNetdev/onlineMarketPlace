@@ -18,7 +18,7 @@
         {% if request.user == items.created_by %}
             <div class="mt-6 p-6 bg-white rounded-xl">
                 <p>this is your item!</p>
-                <a href="{% url 'delete' items.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
+                <a href="{% url 'edit' items.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl">Edit</a>
                 <a href="{% url 'delete' items.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-red-500 text-white rounded-xl">Delete</a>
             </div>
             {% else %}
