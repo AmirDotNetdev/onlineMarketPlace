@@ -35,4 +35,4 @@ def signUp(request):
 
 def logout_user(request):
     logout(request)
-    return render('login')
+    return redirect('login')

@@ -20,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('items/', include('item.urls')),
+    path('inbox/', include('conversation.urls')),
+
     path('dashboard/', include('dashboard.urls'), name= 'dashboard'),
 
 ]
