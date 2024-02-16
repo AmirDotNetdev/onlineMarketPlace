@@ -13,7 +13,7 @@ def new_conversation(request, pk_item):
     conversations = Conversation.objects.filter(item = item).filter(members__in=[request.user.id])
     
     if conversations:
-        pass
+        return redirect('conversatoin:detail' , pk = conversations.first().id)
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
         if form.is_valid():
@@ -45,3 +45,24 @@ def inbox(request):
      }
      
      return render(request, 'conversation/inbox.html', context)
+
+@login_required
+def detail(request, pk):
+    conversations = Conversation.objects.filter(members__in=[request.user.id]).get(pk = pk)
+    if request.method == 'POST':
+        form = ConversationMessageForm(request.POST)
+        conversation_message = form.save(commit=False)
+        conversation_message.conversation = conversations
+        conversation_message.created_by = request.user
+        conversation_message.save()
+
+        conversations.save()
+        return redirect('conversation:detail', pk = pk)
+    else:
+        form = ConversationMessageForm()
+    
+    context = {
+        'conversations' : conversations,
+        'form' : form
+    }
+    return render(request, 'conversation/detail.html/', context)

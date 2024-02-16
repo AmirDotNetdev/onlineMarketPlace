@@ -11,9 +11,17 @@ class Conversation(models.Model):
 
     class Meta:
         ordering = ('-modified_at',)
+        def __str__(self):
+            return self.item
+        
 
 class ConversationMessage(models.Model):
-    conversation = models.ForeignKey(Conversation, on_delete= models.CASCADE)
+    conversation = models.ForeignKey(Conversation, related_name='messages', on_delete= models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete = models.CASCADE)
+
+    class Meta:
+        def __str__(self):
+            return self.content
+        
